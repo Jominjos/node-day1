@@ -46,7 +46,7 @@ app.post(["/store"], async (req, res, next) => {
 
   const time = `${year}_${month}_${day}-${hours}_${minutes}_${seconds}.txt`;
   const bodydetails = JSON.stringify(req.body);
-  fs.writeFileSync(
+  fs.writeFile(
     path.join(__dirname, "files", time),
     ` ${currentDate} ${bodydetails}`,
     (err) => {
