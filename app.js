@@ -33,7 +33,7 @@ app.use(["/add"], (req, res, next) => {
   res.sendFile(path.join(__dirname, "public", "form.html"));
 });
 
-app.post(["/store"], (req, res, next) => {
+app.post(["/store"], async (req, res, next) => {
   const currentDate = new Date();
 
   const year = currentDate.getFullYear();
@@ -46,7 +46,7 @@ app.post(["/store"], (req, res, next) => {
 
   const time = `${year}_${month}_${day}-${hours}_${minutes}_${seconds}.txt`;
   const bodydetails = JSON.stringify(req.body);
-  fs.writeFile(
+  fs.writeFileSync(
     path.join(__dirname, "files", time),
     ` ${currentDate} ${bodydetails}`,
     (err) => {
